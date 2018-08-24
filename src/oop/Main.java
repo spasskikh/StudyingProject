@@ -9,22 +9,28 @@ public class Main {
         Dog lab = new Dog();
         lab.setName("Charley");
         lab.setBreed("Lab");
-        lab.setPaws(5);
-        lab.setTail(2);
-        lab.setSize("Average");
+        lab.setSize(Size.AVERAGE);
 
         System.out.println(lab);
         lab.bark();
 
 
         Dog sheppard = new Dog("Mike", "Sheppard");
-        sheppard.setSize("Big");
         sheppard.bark();
 
 
-        Dog doberman = new Dog("Jack","Doberman");
-        doberman.setSize("Big");
+        Dog doberman = new Dog("Jack", "Doberman");
+        doberman.setSize(Size.BIG);
         doberman.bite();
+
+        Size small = Size.SMALL;
+        small.toString();
+
+        Size[] enums = Size.values();
+        for (Size s : enums) {
+            System.out.println(s);
+        }
+
 
     }
 }

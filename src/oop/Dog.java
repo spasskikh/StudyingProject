@@ -4,11 +4,11 @@ public class Dog {
 
     private static int dogsCount;
 
-    private int paws = 4;
-    private int tail = 1;
+    public static final int PAWS = 4;
+    public static final int TAIL = 1;
     private String name;
     private String breed;
-    private String size;
+    private Size size = Size.UNDEFINED;
 
     public Dog() {
         dogsCount++;
@@ -22,32 +22,6 @@ public class Dog {
 
     public static int getDogsCount() {
         return dogsCount;
-    }
-
-    public int getPaws() {
-        return paws;
-    }
-
-    public void setPaws(int paws) {
-        if (paws == 4) {
-            this.paws = paws;
-        } else {
-            System.out.println("User tried to assign " + paws + " paws for a dog.");
-            System.out.println("Correct number is 4.");
-        }
-    }
-
-    public int getTail() {
-        return tail;
-    }
-
-    public void setTail(int tail) {
-        if (tail == 1) {
-            this.tail = tail;
-        } else {
-            System.out.println("User tried to assign " + tail + " tails for a dog.");
-            System.out.println("Correct number is 1.");
-        }
     }
 
     public String getName() {
@@ -66,27 +40,30 @@ public class Dog {
         this.breed = breed;
     }
 
-    public String getSize() {
+    public Size getSize() {
         return size;
     }
 
-    public void setSize(String size) {
-        if (size.equalsIgnoreCase("Big") ||
-                size.equalsIgnoreCase("Average") ||
-                size.equalsIgnoreCase("Small")) {
-            this.size = size;
-        } else {
-            System.out.println("Size should be one of this: Big, Average, Small.");
-        }
+    public void setSize(Size size) {
+        this.size = size;
     }
 
     public void bark() {
-        if (size.equalsIgnoreCase("Big")) {
-            System.out.println("Wof - Wof");
-        } else if (size.equalsIgnoreCase("Average")) {
-            System.out.println("Raf - Raf");
-        } else {
-            System.out.println("Tiaf - tiaf");
+        switch (size) {
+            case BIG:
+            case VERY_BIG:
+                System.out.println("Wof - Wof");
+                break;
+            case AVERAGE:
+                System.out.println("Raf - Raf");
+                break;
+            case SMALL:
+            case VERY_SMALL:
+                System.out.println("Tiaf - tiaf");
+                break;
+            default:
+                System.out.println("Size undefined.");
+
         }
     }
 
@@ -104,8 +81,8 @@ public class Dog {
         return "Dog: " +
                 "breed = " + breed +
                 ", name = " + name +
-                ", paws = " + paws +
-                ", tail = " + tail +
+                ", paws = " + PAWS +
+                ", tail = " + TAIL +
                 ", size = " + size;
     }
 }
