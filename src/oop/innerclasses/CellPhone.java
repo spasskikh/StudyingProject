@@ -5,6 +5,12 @@ public class CellPhone {
     private String make;
     private String model;
     private Display display;
+    private RadioModule module;
+    private AbstractButton button;
+
+    public interface AbstractButton {
+        void click();
+    }
 
     public CellPhone(String make, String model) {
         this.make = make;
@@ -30,5 +36,22 @@ public class CellPhone {
 
     public void turnOn () {
         initDisplay();
+        module = new RadioModule();
+        initButton();
+    }
+
+    public void initButton() {
+        button = new AbstractButton() {
+            @Override
+            public void click() {
+                System.out.println("Button clicked.");
+            }
+        };
+    }
+
+    public void call(String number) {
+        button.click();
+        module.call(number);
     }
 }
+
