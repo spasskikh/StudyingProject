@@ -1,6 +1,4 @@
-abstraction.inheritance;
-
-import java.util.List;
+package oop.inheritance;
 
 public class InheritanceMain {
 
