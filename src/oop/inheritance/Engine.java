@@ -25,32 +25,27 @@ public class Engine {
     public double getVolume() {
         return volume;
     }
-
     public void setVolume(double volume) {
         this.volume = volume;
     }
-
     public EngineType getEngineType() {
         return engineType;
     }
-
     public void setEngineType(EngineType engineType) {
         this.engineType = engineType;
     }
-
     public int getPower() {
         return power;
     }
-
     public void setPower(int power) {
         this.power = power;
     }
-
     public List<Piston> getPistons() {
         return pistons;
     }
-
     public void setPistons(List<Piston> pistons) {
         this.pistons = pistons;
     }
+
+
 }

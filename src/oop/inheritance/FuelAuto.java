@@ -15,18 +15,16 @@ public class FuelAuto extends Auto {
     public int getAvailablePetrol() {
         return availablePetrol;
     }
-
     public void setAvailablePetrol(int availablePetrol) {
         this.availablePetrol = availablePetrol;
     }
-
     public int getTankVolume() {
         return tankVolume;
     }
-
     public void setTankVolume(int tankVolume) {
         this.tankVolume = tankVolume;
     }
+
 
     public void fuelUp(int volume) {
         availablePetrol+=volume;
@@ -34,5 +32,8 @@ public class FuelAuto extends Auto {
     }
 
 
-
+    @Override
+    public void energize() {
+        fuelUp(getTankVolume()-getAvailablePetrol());
+    }
 }

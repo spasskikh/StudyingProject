@@ -13,7 +13,6 @@ public class Bus extends FuelAuto{
     public int getPassengersNumber() {
         return passengersNumber;
     }
-
     public void setPassengersNumber(int passengersNumber) {
         this.passengersNumber = passengersNumber;
     }
@@ -31,16 +30,4 @@ public class Bus extends FuelAuto{
         System.out.println("Passenger released.");
     }
 
-    public void fuelUp() {
-        int volume = getTankVolume()-getAvailablePetrol();
-        fuelUp(volume);
-    }
-
-    @Override
-    public void fuelUp(int petrolVolume) {
-        int volume = getAvailablePetrol()+petrolVolume;
-        if (volume>getTankVolume()){
-            setAvailablePetrol(getTankVolume());
-        }
-    }
 }

@@ -15,15 +15,12 @@ public class ElectricCar extends Auto{
     public int getBatteryVolume() {
         return batteryVolume;
     }
-
     public void setBatteryVolume(int batteryVolume) {
         this.batteryVolume = batteryVolume;
     }
-
     public int getPassengersNumber() {
         return passengersNumber;
     }
-
     public void setPassengersNumber(int passengersNumber) {
         this.passengersNumber = passengersNumber;
     }
@@ -31,4 +28,10 @@ public class ElectricCar extends Auto{
     public void charge() {
         System.out.println("Battery is charging.");
     }
+
+    @Override
+    public void energize() {
+        charge();
+    }
+
 }

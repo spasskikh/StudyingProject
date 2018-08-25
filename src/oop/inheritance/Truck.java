@@ -13,7 +13,6 @@ public class Truck extends FuelAuto {
     public int getCargoWeigh() {
         return cargoWeigh;
     }
-
     public void setCargoWeigh(int cargoWeigh) {
         this.cargoWeigh = cargoWeigh;
     }
