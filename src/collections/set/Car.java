@@ -1,6 +1,6 @@
 package collections.set;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     private final String carBrend;
     private final String model;
@@ -24,7 +24,7 @@ public class Car {
         return pricePerDay;
     }
 
-//    x.equals(x) = true - reflexivity
+    //    x.equals(x) = true - reflexivity
 //    x.equals(y) = true THEN y.equals(c) = true - symmetry
 //    x.equals(y) = true && y.equals(z) = true THEN x.equals(z) = true - transitivity
     @Override
@@ -54,6 +54,22 @@ public class Car {
         result = 31 * result + model.hashCode();
         result = 31 * result + pricePerDay.hashCode();
         return result;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        if (pricePerDay < car.getPricePerDay()) {
+            return -1;
+        } else if (pricePerDay > car.getPricePerDay()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return carBrend + " " + model + " " + pricePerDay;
     }
 }
 

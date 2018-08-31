@@ -1,7 +1,9 @@
 package collections.set;
 
 import java.util.HashSet;
+import java.util.NavigableSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SetMain {
 
@@ -37,12 +39,12 @@ public class SetMain {
 
         Set<Car> exclusive = new HashSet<>(cars);
         exclusive.removeAll(intersect);
-        print(exclusive);
+//        print(exclusive);
 
-
-
-
-
+        NavigableSet<Car> treeSet = new TreeSet<>();
+        treeSet.addAll(eastCars);
+        treeSet.addAll(westCars);
+        print(treeSet);
 
 
     }
