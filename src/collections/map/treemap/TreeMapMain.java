@@ -1,7 +1,5 @@
 package collections.map.treemap;
 
-import javafx.beans.property.ObjectProperty;
-
 import java.util.*;
 
 public class TreeMapMain {
@@ -10,17 +8,15 @@ public class TreeMapMain {
 
         NavigableMap<AvgStudentGrade, Set<SubjectGrade>> grades = createGrades();
 
-//        Iterator itr = grades.entrySet().iterator();
-//        while (itr.hasNext()) {
-//            Map.Entry e = (Map.Entry) itr.next();
-//            System.out.println(e.getKey()+" Hash code: "+ e.getKey().hashCode()+ " --- " + e.getValue());
-//        }
+        Iterator itr = grades.entrySet().iterator();
+        while (itr.hasNext()) {
+            Map.Entry e = (Map.Entry) itr.next();
+            System.out.println(e.getKey()+" Hash code: "+ e.getKey().hashCode()+ " --- " + e.getValue());
+        }
 
-//        System.out.println(grades.get(new AvgStudentGrade("Alex", 82.8F)));
+        System.out.println("Alex --- "+grades.get(new AvgStudentGrade("Alex", 82.8F)));
 
-        printGrade(grades, false);
-
-
+        printGrade(grades, true);
     }
 
     private static void printGrade(NavigableMap<AvgStudentGrade, Set<SubjectGrade>> grades, boolean printValue) {

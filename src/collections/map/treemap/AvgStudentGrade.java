@@ -1,7 +1,5 @@
 package collections.map.treemap;
 
-import java.util.Objects;
-
 public class AvgStudentGrade implements Comparable<AvgStudentGrade> {
 
     private final String name;
@@ -23,12 +21,12 @@ public class AvgStudentGrade implements Comparable<AvgStudentGrade> {
     @Override
     public int compareTo(AvgStudentGrade that) {
         if (this.avgGrade < that.getAvgGrade()) {
-            return 1;
-        }
-        if (this.avgGrade < that.getAvgGrade()) {
             return -1;
         }
-        return name.compareTo(that.getName());
+        if (this.avgGrade > that.getAvgGrade()) {
+            return 1;
+        }
+        return this.name.compareTo(that.getName());
     }
 
     @Override
