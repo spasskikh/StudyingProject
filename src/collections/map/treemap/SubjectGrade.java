@@ -1,8 +1,8 @@
 package collections.map.treemap;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-public class SubjectGrade {
+public class SubjectGrade implements Serializable{
 
     private final String subject;
     private final int grade;
