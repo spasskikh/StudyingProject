@@ -8,18 +8,33 @@ public class TreeMapMain {
 
         NavigableMap<AvgStudentGrade, Set<SubjectGrade>> grades = createGrades();
 
-        Iterator itr = grades.entrySet().iterator();
-        while (itr.hasNext()) {
-            Map.Entry e = (Map.Entry) itr.next();
-            System.out.println(e.getKey()+" Hash code: "+ e.getKey().hashCode()+ " --- " + e.getValue());
-        }
+//        Iterator itr = grades.entrySet().iterator();
+//        while (itr.hasNext()) {
+//            Map.Entry e = (Map.Entry) itr.next();
+//            System.out.println(e.getKey()+" Hash code: "+ e.getKey().hashCode()+ " --- " + e.getValue());
+//        }
+//
+//        System.out.println("Alex --- "+grades.get(new AvgStudentGrade("Alex", 82.8F)));
 
-        System.out.println("Alex --- "+grades.get(new AvgStudentGrade("Alex", 82.8F)));
+        printGrade(grades, false);
+        System.out.println();
 
-        printGrade(grades, true);
+        AvgStudentGrade border = grades.ceilingKey(new AvgStudentGrade("", 80F));
+        System.out.println("Scholarship students:");
+        NavigableMap<AvgStudentGrade, Set<SubjectGrade>> scholarshipStudents = (NavigableMap<AvgStudentGrade, Set<SubjectGrade>>) grades.tailMap(border);
+        printGrade(scholarshipStudents.descendingMap(),false);
+        System.out.println();
+
+        System.out.println("Contender student:\n"+grades.lowerKey(border));
+
+        System.out.println("\nHighest grade:\n"+grades.lastKey());
+
+        System.out.println("\nLowest grade:\n"+grades.firstEntry());
+
+
     }
 
-    private static void printGrade(NavigableMap<AvgStudentGrade, Set<SubjectGrade>> grades, boolean printValue) {
+    private static void printGrade(Map<AvgStudentGrade, Set<SubjectGrade>> grades, boolean printValue) {
         Set<AvgStudentGrade> avgGrades = grades.keySet();
         for(AvgStudentGrade grade : avgGrades) {
             System.out.println(grade);
@@ -29,7 +44,7 @@ public class TreeMapMain {
         }
     }
 
-    private static NavigableMap<AvgStudentGrade, Set<SubjectGrade>> createGrades() {
+    public static NavigableMap<AvgStudentGrade, Set<SubjectGrade>> createGrades() {
 
         Set<SubjectGrade> alexGrade = new HashSet<>();
         alexGrade.add(new SubjectGrade("Maths", 89));
