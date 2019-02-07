@@ -3,6 +3,7 @@ package javaio;
 import collections.map.treemap.AvgStudentGrade;
 import collections.map.treemap.SubjectGrade;
 import collections.map.treemap.TreeMapMain;
+import javaio.entity.Student;
 
 import java.io.IOException;
 import java.util.*;
@@ -19,25 +20,23 @@ public class IOMain {
 
         SortedMap<AvgStudentGrade, Set<SubjectGrade>> grades = TreeMapMain.createGrades();
 
-        Writer.writeFile(GRADE_BOOK, grades);
-        Reader.readFile(GRADE_BOOK);
+        Writer.bufferedWriter(GRADE_BOOK, grades);
+        Reader.bufferedReader(GRADE_BOOK);
 
         ByteStream.byteStream(GRADE_BOOK);
 
-//        Writer.writeWithFormatter(); //with Scanner
-
         processGrades(grades, STUDENTS_BOOK);
-        outputStudents(Reader.readObjects(STUDENTS_BOOK));
+        outputStudents(Reader.objectInputStream(STUDENTS_BOOK));
 
         FileUtils.printNioFileDetails(GRADE_BOOK);
 
-        Reader.readFileInFull(GRADE_BOOK);
+        Reader.nioFileInFull(GRADE_BOOK);
 
-        Reader.nioReadFileWithBuffer(GRADE_BOOK);
-        Writer.nioWriteWithBuffer("Buffered.txt");
+        Reader.nioBufferedReader(GRADE_BOOK);
+        Writer.nioBufferedWriter("Buffered.txt");
 
-        Reader.nioReadWithStream(GRADE_BOOK);
-        Writer.nioWriteWithStream("Buffered.txt");
+        Reader.nioInputStream(GRADE_BOOK);
+        Writer.nioOutputStream("Buffered.txt");
 
 
 
@@ -50,7 +49,7 @@ public class IOMain {
             students.add(new Student(gradeKey.getName(), gradeKey.getAvgGrade(), grades.get(gradeKey)));
         }
 
-        Writer.writeObjects(students, fileName);
+        Writer.objectOutputStream(students, fileName);
 
     }
 

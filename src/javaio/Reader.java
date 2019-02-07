@@ -1,5 +1,7 @@
 package javaio;
 
+import javaio.entity.Student;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -10,7 +12,7 @@ import java.util.List;
 
 public class Reader {
 
-    public static void readFile(String fileName) {
+    public static void bufferedReader(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -21,18 +23,13 @@ public class Reader {
         }
     }
 
-    public static List<Student> readObjects(String fileName) {
-
+    public static List<Student> objectInputStream(String fileName) {
         List<Student> students = new ArrayList<>();
 
-        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(Paths.get(fileName)))) {
-
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
             boolean keepReading = true;
-
             while (keepReading) {
-
                 Student student = (Student) in.readObject();
-
                 if (student.getAvgGrade() != -1) {
                     students.add(student);
                 } else {
@@ -42,14 +39,11 @@ public class Reader {
         } catch (IOException | ClassNotFoundException exc) {
             exc.printStackTrace();
         }
-
         return students;
     }
 
-    public static void readFileInFull(String fileName) throws IOException {
-
+    public static void nioFileInFull(String fileName) throws IOException {
         Path path = Paths.get(fileName);
-
         List<String> lines = Files.readAllLines(path);
 
         for (String str : lines) {
@@ -57,7 +51,7 @@ public class Reader {
         }
     }
 
-    public static void nioReadFileWithBuffer(String fileName) {
+    public static void nioBufferedReader(String fileName) {
         Path path = Paths.get(fileName);
         Charset charset = Charset.forName("UTF-8");
         try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
@@ -70,7 +64,7 @@ public class Reader {
         }
     }
 
-    public static void nioReadWithStream(String fileName) {
+    public static void nioInputStream(String fileName) {
         Path path = Paths.get(fileName);
         try (InputStream in = Files.newInputStream(path)) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));

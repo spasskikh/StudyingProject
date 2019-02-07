@@ -1,4 +1,4 @@
-package javaio;
+package javaio.entity;
 
 import collections.map.treemap.SubjectGrade;
 
