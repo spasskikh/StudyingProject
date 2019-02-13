@@ -3,6 +3,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamHomeTask {
@@ -18,7 +19,7 @@ public class StreamHomeTask {
         System.out.println(getNumbers(Arrays.asList("1, 2, 0", "4, 5")));
 
         System.out.println("=====");
-        getRandomNumbers(10, 25_214_903_917L, 11L, 2 ^ 48L).limit(10).forEach(System.out::println);
+        getRandomNumbers(10, 25_214_903_917L, 11, 2 ^ 48).limit(10).forEach(System.out::println);
 
         System.out.println("=====");
         zip(Stream.of(1, 2, 3), Stream.of(1, 2, 3, 4, 5, 6)).forEach(System.out::println);
@@ -27,10 +28,16 @@ public class StreamHomeTask {
     }
 
     private static String getOddElements(List<String> list) {
+//        return list.stream()
+//                .filter(e -> list.indexOf(e) % 2 != 0)
+//                .map(e -> list.indexOf(e) + " " + e)
+//                .collect(Collectors.joining(", "));
+
         return list.stream()
-                .filter(e -> list.indexOf(e) % 2 != 0)
-                .map(e -> list.indexOf(e) + " " + e)
-                .collect(Collectors.joining(", "));
+                .mapToInt(list::indexOf)
+                .filter(i -> i % 2 != 0)
+                .mapToObj(e -> e + " " + list.get(e))
+                .collect(Collectors.joining(","));
     }
 
     private static List<String> toUpperAndDescending(List<String> list) {
@@ -63,7 +70,6 @@ public class StreamHomeTask {
             Stream<T> temp = Stream.of(first.next(), second.next());
             zipped = Stream.concat(zipped, temp);
         }
-
         return zipped;
     }
 
